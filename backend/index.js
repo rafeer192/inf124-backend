@@ -15,7 +15,7 @@ const server = require("http").createServer(app);
 // get info from React Front end on port 3000 or vercel website
 const allowedOrigins = [
     process.env.CLIENT_ORIGIN,
-    'https://inf12411.vercel.app',
+    'https://inf124.vercel.app',
     "http://localhost:3000"
 ].filter(Boolean); // Remove any undefined values
 
@@ -64,8 +64,9 @@ io.on("connect", socket => {
 });
 
 // EXPRESS SERVER
-server.listen(4000, () => {
-    console.log("Server is listening on port 4000");
+const PORT = process.env.PORT || 4000;
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
 
 // health check
