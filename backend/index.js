@@ -23,7 +23,7 @@ const allowedOrigins = [
 const io = new Server(server, {
     cors: {
         origin: allowedOrigins,
-        credentials: "true",
+        credentials: true,
     },
 });
 
@@ -47,9 +47,9 @@ app.use(session({ // create cookies so user doesn't have to relog when refreshin
     cookie: {
         secure: true,  // Force secure in production
         httpOnly: true,
-        sameSite: 'none', // Required for cross-site cookies
+        sameSite: 'lax', // Required for cross-site cookies
         expires: 1000 * 60 * 60 * 24 * 7, // 7 days
-        domain: '.railway.app' // Adjust this to match your Railway domain
+        domain: 'https://inf124-backend-production.up.railway.app/' // Adjust this to match your Railway domain
     },
 })
 );
