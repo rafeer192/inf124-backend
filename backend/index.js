@@ -16,7 +16,8 @@ const server = require("http").createServer(app);
 const allowedOrigins = [
   'http://localhost:3000',
   'https://inf124-rdwtnswjf-rafees-projects-9188c2be.vercel.app', 
-  'https://inf124.vercel.app'
+  'https://inf124.vercel.app', 
+  'https://inf124-frontend.vercel.app/'
 ];
 
 const io = new Server(server, {
