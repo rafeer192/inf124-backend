@@ -14,11 +14,9 @@ const server = require("http").createServer(app);
 
 // get info from React Front end on port 3000 or vercel website
 const allowedOrigins = [
-    process.env.CLIENT_ORIGIN,
-    'https://inf124.vercel.app',
-    "http://localhost:3000", 
-    'https://inf124-rdwtnswjf-rafees-projects-9188c2be.vercel.app'
-].filter(Boolean); // Remove any undefined values
+  'http://localhost:3000',
+  'https://inf124-rdwtnswjf-rafees-projects-9188c2be.vercel.app'
+];
 
 const io = new Server(server, {
     cors: {
@@ -32,9 +30,9 @@ app.use(
     cors({
         origin: allowedOrigins,
         credentials: true,
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
-        exposedHeaders: ['set-cookie']
+        // methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        // allowedHeaders: ['Content-Type', 'Authorization'],
+        // exposedHeaders: ['set-cookie']
     })
 );
 
