@@ -15,7 +15,8 @@ const server = require("http").createServer(app);
 // get info from React Front end on port 3000 or vercel website
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://inf124-rdwtnswjf-rafees-projects-9188c2be.vercel.app'
+  'https://inf124-rdwtnswjf-rafees-projects-9188c2be.vercel.app', 
+  'https://inf124.vercel.app'
 ];
 
 const io = new Server(server, {
