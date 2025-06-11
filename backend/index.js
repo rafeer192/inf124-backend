@@ -16,7 +16,8 @@ const server = require("http").createServer(app);
 const allowedOrigins = [
     process.env.CLIENT_ORIGIN,
     'https://inf124.vercel.app',
-    "http://localhost:3000"
+    "http://localhost:3000", 
+    'https://inf124-rdwtnswjf-rafees-projects-9188c2be.vercel.app'
 ].filter(Boolean); // Remove any undefined values
 
 const io = new Server(server, {
