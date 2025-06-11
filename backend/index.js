@@ -17,7 +17,7 @@ const allowedOrigins = [
   'http://localhost:3000',
   'https://inf124-rdwtnswjf-rafees-projects-9188c2be.vercel.app', 
   'https://inf124.vercel.app', 
-  'https://inf124-frontend.vercel.app/'
+  'https://inf124-frontend.vercel.app'
 ];
 
 const io = new Server(server, {
@@ -28,28 +28,32 @@ const io = new Server(server, {
 });
 
 app.use(helmet());
-app.use(
-    cors({
-        origin: allowedOrigins,
-        credentials: true,
-        // methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-        // allowedHeaders: ['Content-Type', 'Authorization'],
-        // exposedHeaders: ['set-cookie']
-    })
-);
+app.use(cors({
+  origin: function(origin, callback) {
+    // allow requests with no origin (like mobile apps, curl, postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true, // if using cookies or auth headers
+}));
+
+app.options('*', cors());
 
 app.use(express.json());
 app.use(session({ // create cookies so user doesn't have to relog when refreshing page
     secret: process.env.COOKIE_SECRET,
-    credentials: true,
     name: "sid",
     saveUninitialized: false,
     cookie: {
-        secure: true,  // Force secure in production
+        secure: process.env.NODE_ENV === 'production',  // Force secure in production
         httpOnly: true,
         sameSite: 'lax', // Required for cross-site cookies
         expires: 1000 * 60 * 60 * 24 * 7, // 7 days
-        domain: 'https://inf124-backend-production.up.railway.app/' // Adjust this to match your Railway domain
+        domain: process.env.NODE_ENV === 'production' ? 'inf124-backend-production.up.railway.app' : undefined, // Adjust this to match your Railway domain
     },
 })
 );
