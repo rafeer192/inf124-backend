@@ -17,7 +17,8 @@ const allowedOrigins = [
   'http://localhost:3000',
   'https://inf124-rdwtnswjf-rafees-projects-9188c2be.vercel.app', 
   'https://inf124.vercel.app', 
-  'https://inf124-frontend.vercel.app'
+  'https://inf124-frontend.vercel.app',
+  'https://inf124-frontend-bzn7iaxwi-rafees-projects-9188c2be.vercel.app'
 ];
 
 const io = new Server(server, {
